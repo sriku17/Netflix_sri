@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Clone</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+.container {
+  display: flex;
+  max-width: 1300px;
+  margin: auto;
+}
+
+
+.sidebar {
+  width: 20%;
+  border-right: 1px solid rgb(55, 55, 84);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.menu {
+  list-style: none;
+}
+
+.menu li {
+  font-size: 18px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.menu li:hover {
+  color: rgb(29, 155, 240);
+}
+
+.post-btn {
+  background: rgb(29, 155, 240);
+  border: none;
+  color: white;
+  border-radius: 30px;
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.pfp {
+  background: rgb(47, 142, 165);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.handle {
+  font-size: 13px;
+  color: gray;
+}
+
+
+.feed {
+  width: 50%;
+  border-right: 1px solid ;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border-bottom: 1px solid rgb(131, 131, 242);
+}
+
+.tabs span {
+  cursor: pointer;
+  color: gray;
+  font-weight: bold;
+}
+
+.tabs .active {
+  color: white;
+  border-bottom: 3px solid rgb(29, 155, 240);
+  padding-bottom: 5px;
+}
+
+.tweet-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border-bottom: 1px solid #2f3336;
+}
+
+.pfp-small {
+  background: rgb(50, 106, 115);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tweet-box input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+}
+
+.tweet-box button {
+  background: rgb(29, 155, 240);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.show-posts {
+  text-align: center;
+  color: rgb(29, 155, 240);
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(66, 66, 80);
+  cursor: pointer;
+}
+
+.tweet {
+  padding: 15px;
+  border-bottom: 1px solid rgb(66, 66, 80);
+}
+
+.tweet-header {
+  margin-bottom: 5px;
+}
+
+.tweet-header span {
+  color: gray;
+  font-size: 14px;
+}
+
+.tweet-image1 {
+  background:black;
+  height: 200px;
+  border-radius: 10px;
+  margin: 10px 0;
+  background-image: url("./public/Screenshot 2025-10-23 at 10.27.03 PM.png");
+
+}
+.tweet-image2 {
+  background: black;
+  height: 200px;
+  border-radius: 10px;
+  margin: 10px 0;
+  background-image: url("public/images/dresses.png");
+
+}
+.tweet-image3 {
+  background: black;
+  height: 200px;
+  border-radius: 10px;
+  margin: 10px 0;
+  background-image: url("public/lights.png");
+
+}
+.tweet-image4 {
+  background:BLACK;
+  height: 200px;
+  border-radius: 10px;
+  margin: 10px 0;
+  background-image: url("public/images/summary.png");
+
+}
+
+
+.tweet-footer span {
+  color: gray;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+
+.right-panel {
+  width: 30%;
+  padding: 15px;
+}
+
+.search-box {
+  background: black;
+  border-radius: 30px;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+}
+
+.search-box input {
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 15px;
+  width: 100%;
+}
+
+.card {
+  background: #16181c;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #b0b0b0;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.card button {
+  background: rgb(29, 155, 240);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.card ul {
+  list-style: none;
+}
+
+.card li {
+  padding: 5px 0;
+  color: #d9d9d9;
+  border-bottom: 1px solid #4999d7;
+}
+
+  </style>
+ 
+</head>
+<body>
+  <div class="container">
+
+   
+    <div class="sidebar">
+      <div class="logo">𝕏</div>
+      <ul class="menu">
+        <li>🏠 Home</li>
+        <li>🔍 Explore</li>
+        <li>🔔 Notifications</li>
+        <li>💬 Messages</li>
+        <li>🧠 Grok</li>
+        <li>📋 Lists</li>
+        <li>🔖 Bookmarks</li>
+        <li>👥 Communities</li>
+        <li>💎 Premium</li>
+        <li>👤 Profile</li>
+        <li>⋯ More</li>
+      </ul>
+      <button class="post-btn">Post</button>
+
+      <div class="profile">
+        <div class="pfp">S</div>
+        <div>
+          <p class="name">SRISHTI KUMARI</p>
+          <p class="handle">@srilk1709</p>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="feed">
+      <div class="tabs">
+        <span class="active">For you</span>
+        <span>Following</span>
+      </div>
+
+      <div class="tweet-box">
+        <div class="pfp-small">S</div>
+        <input type="text" placeholder="What’s happening?">
+        <button>Post</button>
+      </div>
+
+      <p class="show-posts">Show 455 posts</p>
+
+      <div class="tweet">
+        <div class="tweet-header">
+          <strong>Elon Musk</strong> <span>@elonmusk · 19h</span>
+        </div>
+        <p>Excited and honored to have received the award! 🏆 Grateful for this recognition and everyone who supported me along the way!</p>
+        <div class="tweet-image1"></div>
+        <div class="tweet-footer">
+          <span>💬 32K</span>
+          <span>🔁 50K</span>
+          <span>❤️ 263K</span>
+          <span>📤 2M</span>
+        </div>
+      </div>
+
+
+      <div class="tweet">
+        <div class="tweet-header">
+          <strong>Elon Musk</strong> <span>@elonmusk · 19h</span>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, autem quod? Eligendi, culpa repellendus. Blanditiis soluta aperiam minima est consequuntur!</p>
+        <div class="tweet-image2"></div>
+        <div class="tweet-footer">
+          <span>💬 32K</span>
+          <span>🔁 50K</span>
+          <span>❤️ 263K</span>
+          <span>📤 2M</span>
+        </div>
+      </div>
+
+     
+
+      <p class="show-posts">Show 455 posts</p>
+
+      <div class="tweet">
+        <div class="tweet-header">
+          <strong>Elon Musk</strong> <span>@elonmusk · 19h</span>
+        </div>
+        <p>Excited and honored to have received the award! 🏆 Grateful for this recognition and everyone who supported me along the way!</p>
+        <div class="tweet-image3"></div>
+        <div class="tweet-footer">
+          <span>💬 32K</span>
+          <span>🔁 50K</span>
+          <span>❤️ 263K</span>
+          <span>📤 2M</span>
+        </div>
+      </div>
+
+      
+
+     
+
+      <div class="tweet">
+        <div class="tweet-header">
+          <strong>Elon Musk</strong> <span>@elonmusk · 19h</span>
+        </div>
+        <p>Excited and honored to have received award! 🏆 Grateful for this recognition and everyone who supported me along the way!</p>
+        <div class="tweet-image4"></div>
+        <div class="tweet-footer">
+          <span>💬 32K</span>
+          <span>🔁 50K</span>
+          <span>❤️ 263K</span>
+          <span>📤 2M</span>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="right-panel">
+      <div class="search-box">
+        <input type="text" placeholder="Search">
+      </div>
+
+      <div class="card">
+        <h3>Subscribe to Premium</h3>
+        <p>Subscribe to unlock new features and if eligible, receive a share of revenue.</p>
+        <button>Subscribe</button>
+      </div>
+
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Today’s News</h3>
+        <ul>
+          <li><strong>India Posts 264/9</strong> in Adelaide ODI Thriller</li>
+          <li><strong>Modi</strong> Chooses Virtual ASEAN Summit</li>
+          <li><strong>Rajasthan SDM</strong> Slaps CNG Attendant</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What’s happening</h3>
+        <ul>
+          <li>Smriti Mandhana · 2,324 posts</li>
+          <li>#ViratKohli · 17.6K posts</li>
+        </ul>
+      </div>
+    </div>
+    
+    
+
+  </div>
+</body>
+</html>
